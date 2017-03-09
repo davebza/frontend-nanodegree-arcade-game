@@ -74,7 +74,7 @@ Player.prototype.drawBox = function (x, y, width, height, color) {
 Player.prototype.checkCollisions = function(){
     var playerBox = {x:this.boxXvalue, y:this.boxYvalue, width:this.boxWidth, height: this.boxHeight};
     console.log(playerBox);
-}
+};
 
 Player.prototype.updateHitBoxXvalue = function () {
     this.boxXvalue = this.x + 16;
@@ -82,7 +82,8 @@ Player.prototype.updateHitBoxXvalue = function () {
 
 Player.prototype.updateHitBoxYvalue = function(){
     this.boxYvalue = this.y + 61;
-}
+};
+
 // Update the player's position, required method for game
 // Parameter: dt, a time delta between ticks
 Player.prototype.handleInput = function(direction) {
@@ -92,7 +93,7 @@ Player.prototype.handleInput = function(direction) {
     switch(direction){
         case "left":
             this.x -=100;
-            this.updateHitBoxXvalue()
+            this.updateHitBoxXvalue();
             break;
         case "right":
             this.x +=100;
