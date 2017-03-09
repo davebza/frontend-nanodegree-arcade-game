@@ -41,7 +41,10 @@ Enemy.prototype.drawBox = function (x, y, width, height, color) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    this.drawBox(this.x, this.y+77, 100, 67, "red");
+    this.drawBox(this.x, this.y + 77, 100, 67, "red");
+    this.EnemyHitBox = {x:this.x, y:this.y, width:100, height: 67};
+    console.log(enemyTop.EnemyHitBox.x);
+
 };
 
 // Now write your own player class
@@ -73,7 +76,9 @@ Player.prototype.drawBox = function (x, y, width, height, color) {
 
 Player.prototype.checkCollisions = function(){
     var playerBox = {x:this.boxXvalue, y:this.boxYvalue, width:this.boxWidth, height: this.boxHeight};
-    console.log(playerBox);
+    //console.log(playerBox);
+    //console.log(enemyTop.EnemyHitBox.x);
+
 };
 
 Player.prototype.updateHitBoxXvalue = function () {
@@ -113,6 +118,8 @@ Player.prototype.handleInput = function(direction) {
 Player.prototype.reset = function(){
     this.y = 515;
     this.x = 200;
+    this.updateHitBoxXvalue();
+    this.updateHitBoxYvalue();
 };
 
 Player.prototype.update = function(dt) {
@@ -120,9 +127,11 @@ Player.prototype.update = function(dt) {
         if (this.x < 0 || this.x > 400) {
         if(this.x < 0){
             this.x = 0;
+            this.updateHitBoxXvalue();
         }
         else{
             this.x = 400;
+            this.updateHitBoxXvalue();
         }
     }
     //detect y bounds and make sure player stays in bounds:
@@ -132,6 +141,7 @@ Player.prototype.update = function(dt) {
         }
         else{
             this.y = 550;
+            this.updateHitBoxYvalue();
         }
     }
     this.checkCollisions();
