@@ -56,6 +56,41 @@ Player.prototype.handleInput= function(direction) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    switch(direction){
+        case "left":
+            this.x -=100;
+            break;
+        case "right":
+            this.x +=100;
+            break;
+        case "up":
+            this.y -=100;
+            break;
+        case "down":
+            this.y +=100;
+            break;
+    }
+};
+
+Player.prototype.update = function(dt) {
+
+        if (this.x < 0 || this.x > 400) {
+        if(this.x < 0){
+            this.x = 0;
+        }
+        else{
+            this.x = 400;
+        }
+    }
+    if (this.y < 0 || this.y > 400) {
+        if(this.y < 0){
+            this.reset();
+        }
+        else{
+            this.y = 400;
+        }
+    }
+
 };
 
 // Draw the player on the screen, required method for game
