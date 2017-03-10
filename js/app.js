@@ -43,7 +43,7 @@ Enemy.prototype.makeEnemyHitbox = function(){
     for (var i = 0; i < allEnemies.length; i++){
         allEnemies[i].EnemyHitBox = {x:this.x, y:this.y, width:100, height: 67};
     }
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -174,7 +174,7 @@ var player = new Player(200, 515);
 var allEnemies = [];
 
 // enemy start positions: top row: 0, 140; mid row: 0, 220; bottom row: 0, 310;
-var enemyTop = new Enemy(0,140);
+var enemyTop = new Enemy(0,145);
 var enemyMiddle = new Enemy(0, 220);
 var enemyBottom = new Enemy(0, 310);
 allEnemies.push(enemyTop, enemyMiddle, enemyBottom);
