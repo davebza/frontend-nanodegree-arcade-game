@@ -30,14 +30,14 @@ Enemy.prototype.update = function(dt) {
     this.makeEnemyHitbox();
     return this.x;
 };
-
-Enemy.prototype.drawBox = function (x, y, width, height, color) {
-    ctx.beginPath();
-    ctx.rect(x, y, width, height);
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = color;
-    ctx.stroke();
-};
+//draw hitboxes on the enemies:
+// Enemy.prototype.drawBox = function (x, y, width, height, color) {
+//     ctx.beginPath();
+//     ctx.rect(x, y, width, height);
+//     ctx.lineWidth = 1;
+//     ctx.strokeStyle = color;
+//     ctx.stroke();
+// };
 
 Enemy.prototype.makeEnemyHitbox = function(){
     for (var i = 0; i < allEnemies.length; i++){
@@ -48,7 +48,7 @@ Enemy.prototype.makeEnemyHitbox = function(){
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    this.drawBox(this.x, this.y + 77, 100, 67, "red");
+    //this.drawBox(this.x, this.y + 77, 100, 67, "red");
 };
 
 // Now write your own player class
@@ -67,7 +67,7 @@ var Player = function(x, y) {
     this.boxHeight = 79;
     this.boxXvalue = this.x + 16;
     this.boxYvalue = this.y + 61;
-    this.sprite = 'images/char-horn-girl.png';
+    this.sprite = 'images/char-princess-girl.png';
 };
 
 Player.prototype.drawBox = function (x, y, width, height, color) {
@@ -82,7 +82,6 @@ Player.prototype.checkCollisions = function(){
     var playerBox = {x:this.boxXvalue, y:this.boxYvalue, width:this.boxWidth, height: this.boxHeight};
     //cycle through allEnemies and make playerBox = rect1, allEnemies.EnemyHitBox = rect2:
     for(var i = 0; i < allEnemies.length; i++){
-        console.log(i);
         var rect1 = playerBox;
         var rect2 = allEnemies[i].EnemyHitBox;
         //this is the collision check code from the MDN 2d collision check:
@@ -165,7 +164,8 @@ Player.prototype.update = function(dt) {
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    this.drawBox(this.boxXvalue, this.boxYvalue, this.boxWidth, this.boxHeight, "purple");
+    //Draw a hitbox on the sprite:
+    // this.drawBox(this.boxXvalue, this.boxYvalue, this.boxWidth, this.boxHeight, "purple");
 };
 
 // Place all enemy objects in an array called allEnemies
