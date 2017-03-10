@@ -80,11 +80,20 @@ Player.prototype.drawBox = function (x, y, width, height, color) {
 
 Player.prototype.checkCollisions = function(){
     var playerBox = {x:this.boxXvalue, y:this.boxYvalue, width:this.boxWidth, height: this.boxHeight};
-    console.log(playerBox);
-    console.log("top: "+enemyTop.EnemyHitBox);
-    console.log("mid: "+enemyMiddle.EnemyHitBox);
-    console.log("Bottom: "+enemyBottom.EnemyHitBox);
-
+    //cycle through allEnemies and make playerBox = rect1, allEnemies.EnemyHitBox = rect2:
+    for(var i = 0; i < allEnemies.length; i++){
+        console.log(i);
+        var rect1 = playerBox;
+        var rect2 = allEnemies[i].EnemyHitBox;
+        //this is the collision check code from the MDN 2d collision check:
+        if (rect1.x < rect2.x + rect2.width &&
+           rect1.x + rect1.width > rect2.x &&
+           rect1.y < rect2.y + rect2.height &&
+           rect1.height + rect1.y > rect2.y) {
+            // collision detected!
+            this.reset();
+        }
+    }
 };
 
 Player.prototype.updateHitBoxXvalue = function () {
