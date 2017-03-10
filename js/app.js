@@ -27,24 +27,28 @@ Enemy.prototype.update = function(dt) {
         this.x = 0;
         this.speed = setSpeed();
     }
+    this.makeEnemyHitbox();
     return this.x;
 };
 
 Enemy.prototype.drawBox = function (x, y, width, height, color) {
     ctx.beginPath();
     ctx.rect(x, y, width, height);
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1;
     ctx.strokeStyle = color;
     ctx.stroke();
 };
+
+Enemy.prototype.makeEnemyHitbox = function(){
+    for (var i = 0; i < allEnemies.length; i++){
+        allEnemies[i].EnemyHitBox = {x:this.x, y:this.y, width:100, height: 67};
+    }
+}
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     this.drawBox(this.x, this.y + 77, 100, 67, "red");
-    this.EnemyHitBox = {x:this.x, y:this.y, width:100, height: 67};
-    console.log(enemyTop.EnemyHitBox.x);
-
 };
 
 // Now write your own player class
@@ -76,8 +80,10 @@ Player.prototype.drawBox = function (x, y, width, height, color) {
 
 Player.prototype.checkCollisions = function(){
     var playerBox = {x:this.boxXvalue, y:this.boxYvalue, width:this.boxWidth, height: this.boxHeight};
-    //console.log(playerBox);
-    //console.log(enemyTop.EnemyHitBox.x);
+    console.log(playerBox);
+    console.log("top: "+enemyTop.EnemyHitBox);
+    console.log("mid: "+enemyMiddle.EnemyHitBox);
+    console.log("Bottom: "+enemyBottom.EnemyHitBox);
 
 };
 
